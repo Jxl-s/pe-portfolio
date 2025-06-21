@@ -1,11 +1,12 @@
 import os
-from flask import Flask, render_template, request
+
 from dotenv import load_dotenv
+from flask import Flask, render_template, request
 
 load_dotenv()
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route("/")
 def index():
-    return render_template('index.html', title="MLH Fellow", url=os.getenv("URL"))
+    return render_template("index.html", title="Jia Xuan Li", url=os.getenv("URL"))
