@@ -30,11 +30,16 @@ experience = [
 
 education = [
     {
-        "degree": "Bachelor of Science in Computer Science",
+        "degree": "Bachelor of Computer Science",
         "school": "Concordia University",
         "date": "Expected: June 2027",
         "location": "Montreal, Canada",
-        "grade": "GPA: 4.17/4.3",
+    },
+    {
+        "degree": "Technical DCS in Computer Science",
+        "school": "Vanier College",
+        "date": "May 2024",
+        "location": "Montreal, Canada",
     }
 ]
 
