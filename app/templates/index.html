@@ -1,76 +1,83 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta property="og:title" content="Personal Portfolio" />
-    <meta property="og:description" content="My Personal Portfolio" />
-    <meta property="og:url" content="{{ url }}" />
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta property="og:title" content="Personal Portfolio" />
+  <meta property="og:description" content="My Personal Portfolio" />
+  <meta property="og:url" content="{{ url }}" />
 
-    <link lang="sass" rel="stylesheet" href="./static/styles/main.css" />
-    <link rel="icon" href="./static/img/favicon.ico" type="image/x-icon" />
-    <title>{{ title }}</title>
-  </head>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet" />
 
-  <body>
-    <header class="nav-bar">
-      <div class="nav-content">
-        <a href="/">
-          <div class="nav-logo">
-            <img src="./static/img/logo.svg" />
-          </div>
-        </a>
-      </div>
-    </header>
+  <link lang="sass" rel="stylesheet" href="./static/styles/main.css" />
+  <link rel="icon" href="./static/img/favicon.ico" type="image/x-icon" />
+  <title>{{ title }}</title>
+</head>
 
-    <div class="profile">
-      <div id="profile-picture" class="profile-picture">
-        <img src="./static/img/photo.webp" />
-      </div>
-      <h1>{{ title }}</h1>
+<body>
+  <header class="nav-bar">
+    <div class="nav-content">
+      <a href="/">
+        <div class="nav-logo">
+          <img src="./static/img/logo.svg" />
+        </div>
+      </a>
     </div>
+  </header>
 
-    <section>
-      <div class="container">
-        <h2>About Me</h2>
-        <div class="about-content">
-          <p>
-            Hello! I'm a passionate software engineer, currently pursuing a
-            degree in Computer Science. I'm currently exploring web graphics,
-            grinding LeetCode, and hopping on the hype train of AI/ML and LLMs,
-            but in my free time I enjoy 3D modeling and watching TV shows.
-          </p>
-        </div>
-      </div>
-    </section>
+  <div class="profile">
+    <div id="profile-picture" class="profile-picture">
+      <img src="./static/img/photo.webp" />
+    </div>
+    <h1>{{ title }}</h1>
+  </div>
 
-    <section class="experience-section">
-      <div class="container">
-        <h2>Experience</h2>
-        <div class="experience-content">
-          {% for exp in experience %}
-          <div class="experience-item">
-            <h3>{{ exp.title }}</h3>
-            <p class="experience-details">{{ exp.company }} | {{ exp.date }}</p>
-            <ul>
-              {% for desc in exp.description %}
-              <li>{{ desc }}</li>
-              {% endfor %}
-            </ul>
-          </div>
-          {% endfor %}
-        </div>
+  <section>
+    <div class="container">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <p>
+          Hello! I'm a passionate software engineer, currently pursuing a
+          degree in Computer Science. I'm currently exploring web graphics,
+          grinding LeetCode, and hopping on the hype train of AI/ML and LLMs,
+          but in my free time I enjoy 3D modeling and watching TV shows.
+        </p>
       </div>
-    </section>
-  </body>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Experience</h2>
+      <div class="card-content">
+        {% for exp in experience %}
+        <div class="card">
+          <h3>{{ exp.title }}</h3>
+          <p class="card-details">{{ exp.company }} | {{ exp.date }}</p>
+          <ul>
+            {% for desc in exp.description %}
+            <li>{{ desc }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2>Places I traveled to</h2>
+      <div class="travel-content">
+        <img src="./static/img/map.png" alt="Travel Map" class="travel-map" />
+      </div>
+    </div>
+  </section>
+</body>
+
 </html>
