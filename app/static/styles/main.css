@@ -210,6 +210,10 @@ section h2:after {
   transform: scale(1.02);
 }
 
+.education-cards .card {
+  border-color: #FFCC00;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   section {
