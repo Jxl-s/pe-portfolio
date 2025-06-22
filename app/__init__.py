@@ -41,8 +41,24 @@ education = [
 hobbies = [
     {
         "title": "3D Modeling",
-        "description": "Creating basic 3D models for fun using Blender.",
-    }
+        "description": "I like to create 3D models for fun using Blender. I enjoy modeling low-poly items and environments as a simple way to express my creativity.",
+        "image": "hobbies/3d-modeling.png",
+    },
+    {
+        "title": "Doing LeetCode",
+        "description": "I like to solve LeetCode problems in my free time as well, although it might seem weird. I find solving problems to be fun, and I've been getting into competitive programming lately.",
+        "image": "hobbies/leetcode.png",
+    },
+    {
+        "title": "Watching TV Series",
+        "description": "I enjoy TV series, especially Korean and Chinese dramas, since I find the longer stories interesting. I also enjoy the cultural aspects they portray.",
+        "image": "hobbies/tv-series.png",
+    },
+    {
+        "title": "Scrolling TikTok/Reels",
+        "description": "I like to scroll TikTok and Reels in my free time for the dopamine, although I know it's not the best use of my time. It's a good way to give a break to my brain.",
+        "image": "hobbies/scrolling.jpg",
+    },
 ]
 
 
@@ -54,5 +70,14 @@ def index():
         url=os.getenv("URL"),
         experience=experience,
         education=education,
+    )
+
+
+@app.route("/hobbies")
+def hobbies_page():
+    return render_template(
+        "hobbies.html",
+        title="Hobbies",
+        url=os.getenv("URL"),
         hobbies=hobbies,
     )
