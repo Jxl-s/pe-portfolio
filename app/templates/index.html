@@ -23,37 +23,7 @@
   </head>
 
   <body>
-    <header class="nav-bar">
-      <div style="width: 100%"></div>
-      <div class="nav-content">
-        <a href="/">
-          <div class="nav-logo">
-            <img src="./static/img/logo.svg" />
-          </div>
-        </a>
-      </div>
-      <ul class="nav-links">
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="#about">About</a>
-        </li>
-        <li>
-          <a href="#experience">Experience</a>
-        </li>
-        <li>
-          <a href="#education">Education</a>
-        </li>
-        <li>
-          <a href="#travels">Travels</a>
-        </li>
-        <li>
-          <a href="/hobbies">Hobbies</a>
-        </li>
-      </ul>
-    </header>
-    <div style="padding-top: 5rem"></div>
+    {% include "includes/navbar.html" %}
     <div class="profile">
       <div id="profile-picture" class="profile-picture">
         <img src="./static/img/photo.webp" />
@@ -65,7 +35,7 @@
     <section>
       <div class="container">
         <h2>About Me</h2>
-        <div class="about-content">
+        <div class="content">
           <p>
             Hello! I'm a passionate software engineer, currently pursuing a
             degree in Computer Science. I'm currently exploring web graphics,
@@ -99,7 +69,7 @@
       </div>
     </section>
 
-    <div class="hash-point" id="travels"></div>
+    <div class="hash-point" id="education"></div>
     <section>
       <div class="container">
         <h2>Education</h2>
@@ -122,6 +92,7 @@
       </div>
     </section>
 
+    <div class="hash-point" id="travels"></div>
     <section>
       <div class="container">
         <h2>Places I traveled to</h2>
@@ -132,4 +103,3 @@
     </section>
   </body>
 </html>
-
