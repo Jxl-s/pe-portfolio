@@ -61,7 +61,10 @@
           {% for exp in experience %}
           <div class="card">
             <h3>{{ exp.title }}</h3>
-            <p class="card-details">{{ exp.company }} | {{ exp.date }}</p>
+            <p class="card-details">
+              <span> {{ exp.company }} ({{ exp.location }}) </span>
+              <span class="location">{{ exp.date }}</span>
+            </p>
             <ul>
               {% for desc in exp.description %}
               <li>{{ desc }}</li>
@@ -80,8 +83,10 @@
           {% for edu in education %}
           <div class="card">
             <h3>{{ edu.school }}</h3>
-            <p class="card-details">{{ edu.degree }} | {{ edu.date }}</p>
-            <p class="card-details">{{ edu.location }}</p>
+            <p class="card-details">
+              <span>{{ edu.degree }} ({{ edu.location }})</span>
+              <span>{{ edu.date }}</span>
+            </p>
             <ul>
               {% for desc in edu.description %}
               <li>{{ desc }}</li>

@@ -157,7 +157,9 @@ section h2:after {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-left: 5px solid #007bff;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .card:hover {
@@ -176,6 +178,9 @@ section h2:after {
   color: #666;
   margin-bottom: 1rem;
   font-style: italic;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .card ul {
@@ -211,7 +216,7 @@ section h2:after {
 }
 
 .education-cards .card {
-  border-color: #FFCC00;
+  border-color: #ffcc00;
 }
 
 /* Responsive adjustments */
@@ -232,3 +237,4 @@ section h2:after {
     font-size: 1.3rem;
   }
 }
+
