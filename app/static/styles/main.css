@@ -103,6 +103,11 @@ body {
   font-weight: 700;
 }
 
+/* Generic section styles */
+section {
+  padding: 2rem 0;
+}
+
 section .container {
   max-width: 900px;
   margin: 0 auto;
@@ -126,29 +131,27 @@ section h2:after {
   margin: 0.8rem auto;
 }
 
-.about-content {
+/* Content styles */
+.content {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.about-content p {
+.content p {
   font-size: 1.1rem;
   line-height: 1.7;
   color: #555;
 }
 
-.experience-section {
-  background-color: #f5f5f9;
-}
-
-.experience-content {
+/* Card-based content */
+.card-content {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.experience-item {
+.card {
   background-color: #fff;
   padding: 1.5rem;
   border-radius: 8px;
@@ -157,34 +160,54 @@ section h2:after {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.experience-item:hover {
+.card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-.experience-item h3 {
+.card h3 {
   font-size: 1.5rem;
   color: #333;
   margin-bottom: 0.5rem;
 }
 
-.experience-item .experience-details {
+.card .card-details {
   font-size: 1rem;
   color: #666;
   margin-bottom: 1rem;
   font-style: italic;
 }
 
-.experience-item ul {
+.card ul {
   padding-left: 20px;
   margin-bottom: 0;
 }
 
-.experience-item li {
+.card li {
   font-size: 1rem;
   line-height: 1.6;
   color: #555;
   margin-bottom: 0.5rem;
+}
+
+/* Travel section specific styles */
+.travel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.travel-map {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.travel-map:hover {
+  transform: scale(1.02);
 }
 
 /* Responsive adjustments */
@@ -197,11 +220,11 @@ section h2:after {
     font-size: 1.75rem;
   }
 
-  .about-content p {
+  .content p {
     font-size: 1rem;
   }
 
-  .experience-item h3 {
+  .card h3 {
     font-size: 1.3rem;
   }
 }
