@@ -24,6 +24,7 @@
 
   <body>
     <header class="nav-bar">
+      <div style="width: 100%"></div>
       <div class="nav-content">
         <a href="/">
           <div class="nav-logo">
@@ -31,8 +32,28 @@
           </div>
         </a>
       </div>
+      <ul class="nav-links">
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="#about">About</a>
+        </li>
+        <li>
+          <a href="#experience">Experience</a>
+        </li>
+        <li>
+          <a href="#education">Education</a>
+        </li>
+        <li>
+          <a href="#travels">Travels</a>
+        </li>
+        <li>
+          <a href="/hobbies">Hobbies</a>
+        </li>
+      </ul>
     </header>
-
+    <div style="padding-top: 5rem"></div>
     <div class="profile">
       <div id="profile-picture" class="profile-picture">
         <img src="./static/img/photo.webp" />
@@ -40,6 +61,7 @@
       <h1>{{ title }}</h1>
     </div>
 
+    <div class="hash-point" id="about"></div>
     <section>
       <div class="container">
         <h2>About Me</h2>
@@ -54,6 +76,7 @@
       </div>
     </section>
 
+    <div class="hash-point" id="experience"></div>
     <section>
       <div class="container">
         <h2>Experience</h2>
@@ -73,6 +96,7 @@
       </div>
     </section>
 
+    <div class="hash-point" id="travels"></div>
     <section>
       <div class="container">
         <h2>Places I traveled to</h2>
