@@ -40,7 +40,7 @@ education = [
         "school": "Vanier College",
         "date": "May 2024",
         "location": "Montreal, Canada",
-    }
+    },
 ]
 
 hobbies = [
@@ -83,6 +83,6 @@ def hobbies_page():
     return render_template(
         "hobbies.html",
         title="Hobbies",
-        url=os.getenv("URL"),
+        url=os.getenv("URL", "http://localhost:5000") + "/hobbies",
         hobbies=hobbies,
     )
