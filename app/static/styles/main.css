@@ -20,11 +20,41 @@ body {
 
 .nav-bar {
   width: 100%;
-  display: inline-block;
+  display: flex;
+  position: fixed;
+  z-index: 2;
+  padding: 10px 0 10px 0;
+  justify-content: space-between;
   background-color: #1c539f;
   font-family: "Roboto", serif;
   font-weight: 700 !important;
   padding-top: 10px;
+}
+
+.nav-links {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  padding-right: 2rem;
+  gap: 0.1rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 12pt;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.hash-point {
+  position: relative;
+  top: -3rem;
+  visibility: hidden;
 }
 
 .nav-content .logo-touch-target {
@@ -296,20 +326,4 @@ section h2:after {
   .card h3 {
     font-size: 1.3rem;
   }
-
-  .hobby-item {
-    flex-direction: column;
-    text-align: center;
-    gap: 1rem;
-  }
-
-  .hobby-image {
-    width: 100px;
-    height: 100px;
-  }
-
-  .hobby-details h3 {
-    font-size: 1.2rem;
-  }
 }
-
