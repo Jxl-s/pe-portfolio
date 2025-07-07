@@ -7,53 +7,44 @@ RED='\033[0;31m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
 
-# Some test fields (with random data)
+# 1. Test post creation
+echo -e "${YELLOW}> 1. Create Post ...${NC}"
+
 TEST_NAME="Jia $RANDOM"
 TEST_EMAIL="Jia@$RANDOM.com"
 TEST_CONTENT="Hello, $RANDOM"
 
-echo -e "${YELLOW}> 1. Creating new post ...${NC}"
 TEST_POST=$(curl -sS -X POST "$BASE_URL/api/timeline_post" \
     -d "name=$TEST_NAME" \
     -d "email=$TEST_EMAIL" \
     -d "content=$TEST_CONTENT")
 
-TEST_ID=$(echo "$TEST_POST" | jq '.id')
+# Make sure the post was successfully created
+TEST_POST_AS_ROW=$(echo "$TEST_POST" | jq -r '"\(.id) \(.name) \(.email) \(.content)"')
 
-echo -e "${YELLOW}> 2. Fetching all posts ...${NC}"
-ALL_POSTS=$(curl -sS -X GET "$BASE_URL/api/timeline_post")
+TEST_ID=$(echo "$TEST_POST" | jq -r '.id')
+EXPECTED_ROW="$TEST_ID $TEST_NAME $TEST_EMAIL $TEST_CONTENT"
 
-TEST_RESPONSES=(
-    "\"id\": $TEST_ID"
-    "\"name\": \"$TEST_NAME\""
-    "\"email\": \"$TEST_EMAIL\""
-    "\"content\": \"$TEST_CONTENT\""
-)
-
-echo -e "${YELLOW}> 3. Evaluating response ...${NC}"
-
-fail_count=0
-for i in "${!TEST_RESPONSES[@]}"; do
-    response="${TEST_RESPONSES[$i]}"
-    test_num=$(( i + 1 ))
-
-    if [[ "$ALL_POSTS" == *"$response"* ]]; then
-        echo -e "${GREEN}✅ Test $test_num: PASS${NC} (found: $response)"
-    else
-        echo -e "${RED}❌ Test $test_num: FAIL${NC} (missing: $response)"
-        (( fail_count += 1 ))
-    fi
-done
-
-echo "------------------------------------------"
-
-if [[ $fail_count == 0 ]]; then
-    echo -e "${GREEN}✅ Status: All tests passed!${NC}"
+if [[ "$TEST_POST_AS_ROW" != "$EXPECTED_ROW" ]]; then
+    echo -e "${RED}❌ Failed to create post!"
+    exit 1
 else
-    echo -e "${RED}❌ Status: $fail_count test(s) failed!${NC}"
+    echo -e "${GREEN}✅ Post successfully created!"
 fi
 
-echo -e "${YELLOW}> Cleaning up test post...${NC}"
-curl -sS -X DELETE "$BASE_URL/api/timeline_post/$TEST_ID" > /dev/null
+# 2. Get all the posts and flatten as rows to ensure new post is there
+echo -e "${YELLOW}> 2. Get Posts ...${NC}"
+ALL_POSTS=$(curl -sS -X GET "$BASE_URL/api/timeline_post")
+ALL_POSTS_AS_ROWS=$(echo "$ALL_POSTS" | jq -r '.timeline_posts[] | "\(.id) \(.name) \(.email) \(.content)"')
 
-echo -e "${GREEN}> Done.${NC}"
+# Testing the output with grep for an exact match
+if echo "$ALL_POSTS_AS_ROWS" | grep -qxF "$EXPECTED_ROW"; then
+    echo -e "${GREEN}✅ Post was found!${NC}"
+else
+    echo -e "${RED}❌ Post was not found${NC}"
+fi
+
+# 3. Clean the test post
+echo -e "${YELLOW}> 3. Cleaning up test post ...${NC}"
+curl -sS -X DELETE "$BASE_URL/api/timeline_post/$TEST_ID" > /dev/null
+echo -e "${GREEN}> Done!${NC}"
