@@ -1,3 +1,6 @@
+/* Shared Styles - Used across multiple pages */
+
+/* Typography */
 p,
 h1,
 h2,
@@ -9,6 +12,7 @@ button {
   font-family: "Roboto", serif;
 }
 
+/* Body and Layout */
 body {
   background-color: #f5f5f9;
   background-size: cover;
@@ -18,6 +22,7 @@ body {
   margin: 0 0 4rem 0;
 }
 
+/* Navigation */
 .nav-bar {
   width: 100%;
   display: flex;
@@ -86,54 +91,7 @@ body {
   padding-right: 0px;
 }
 
-.profile {
-  background-color: #1d539f !important;
-  text-align: center;
-  height: 320px;
-  margin-bottom: 50px;
-}
-
-.profile h1 {
-  font-size: 50px;
-  font-weight: 700;
-  color: white;
-}
-
-.profile img {
-  border-radius: 50%;
-  max-width: 100%;
-  max-height: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  padding: 20px;
-}
-
-.profile .profile-picture {
-  margin-bottom: 30px;
-  height: 200px;
-}
-
-.banner {
-  padding: 20px 0px 50px 0px;
-  height: 150px;
-  background-color: #1d539f;
-}
-
-.banner .logo {
-  max-width: 180px;
-  max-height: 60px;
-  width: auto;
-  height: auto;
-}
-
-.banner .title {
-  color: white;
-  font-size: 50px;
-  font-weight: 700;
-}
-
-/* Generic section styles */
+/* Generic Section Styles */
 section {
   padding: 2rem 0;
 }
@@ -161,7 +119,7 @@ section h2:after {
   margin: 0.8rem auto;
 }
 
-/* Content styles */
+/* Content Styles */
 .content {
   display: flex;
   flex-direction: column;
@@ -175,7 +133,7 @@ section h2:after {
   color: #555;
 }
 
-/* Card-based content */
+/* Card Styles */
 .card-content {
   display: flex;
   flex-direction: column;
@@ -226,91 +184,7 @@ section h2:after {
   margin-bottom: 0.5rem;
 }
 
-/* Hobbies section styles */
-.hobbies-list {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.hobby-item {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-  border-left: 4px solid #ff6b6b;
-}
-
-.hobby-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-}
-
-.hobby-image {
-  flex-shrink: 0;
-  width: 120px;
-  height: 120px;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.hobby-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hobby-details {
-  flex: 1;
-}
-
-.hobby-details h3 {
-  font-size: 1.4rem;
-  color: #333;
-  margin-bottom: 0.8rem;
-  font-weight: 600;
-}
-
-.hobby-details p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #666;
-  margin: 0;
-}
-
-/* Travel section specific styles */
-.travel-content {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  align-items: center;
-}
-
-.travel-map {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.travel-map:hover {
-  transform: scale(1.02);
-}
-
-.education-cards .card {
-  border-color: #ffcc00;
-}
-
-/* Responsive adjustments */
+/* Responsive Design */
 @media (max-width: 768px) {
   section {
     padding: 2.5rem 0;
@@ -326,308 +200,6 @@ section h2:after {
 
   .card h3 {
     font-size: 1.3rem;
-  }
-}
-
-/* Timeline Page Styles */
-.timeline-form-container {
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 2rem;
-  margin-bottom: 3rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-left: 5px solid #007bff;
-}
-
-.timeline-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.form-group label {
-  color: #333;
-  font-weight: 600;
-  font-size: 0.95rem;
-}
-
-.form-group input,
-.form-group textarea {
-  padding: 0.75rem 1rem;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
-  background: #fff;
-  font-family: "Roboto", sans-serif;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: #999;
-}
-
-.submit-btn {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 1rem 2rem;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.submit-btn:hover:not(:disabled) {
-  background-color: #0056b3;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.submit-btn:active:not(:disabled) {
-  transform: translateY(0);
-}
-
-.submit-btn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.timeline-posts-container {
-  margin-top: 2rem;
-}
-
-.timeline-posts-container h3 {
-  font-size: 1.8rem;
-  color: #333;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  position: relative;
-}
-
-.timeline-posts-container h3:after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  margin: 0.8rem auto;
-  border-radius: 2px;
-}
-
-.timeline-posts {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.timeline-post {
-  background: white;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  border-left: 4px solid #667eea;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.timeline-post::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-}
-
-.timeline-post:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-}
-
-.timeline-post:hover::before {
-  transform: scaleX(1);
-}
-
-.post-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.post-avatar {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid #f0f0f0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  flex-shrink: 0;
-}
-
-.post-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.post-info {
-  flex: 1;
-}
-
-.post-author {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #333;
-  margin: 0 0 0.2rem 0;
-}
-
-.post-date {
-  font-size: 0.9rem;
-  color: #666;
-  font-style: italic;
-}
-
-.post-content {
-  margin-left: 62px;
-}
-
-.post-content p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #555;
-  margin: 0;
-  word-wrap: break-word;
-}
-
-.no-posts {
-  text-align: center;
-  padding: 3rem 1rem;
-  color: #666;
-  font-style: italic;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 12px;
-  border: 2px dashed #ddd;
-}
-
-.error-message {
-  text-align: center;
-  padding: 2rem 1rem;
-  color: #e74c3c;
-  background: rgba(231, 76, 60, 0.1);
-  border-radius: 12px;
-  border: 1px solid rgba(231, 76, 60, 0.2);
-}
-
-/* Notification Styles */
-.notification {
-  position: fixed;
-  top: 100px;
-  right: 20px;
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  color: white;
-  font-weight: 500;
-  z-index: 1000;
-  animation: slideInRight 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-}
-
-.notification-success {
-  background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
-}
-
-.notification-error {
-  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-}
-
-.notification-info {
-  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-}
-
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-/* Responsive Timeline Styles */
-@media (max-width: 768px) {
-  .timeline-form-container {
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .timeline-form {
-    gap: 1rem;
-  }
-
-  .form-group input,
-  .form-group textarea {
-    padding: 0.6rem 0.8rem;
-    font-size: 0.95rem;
-  }
-
-  .submit-btn {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-  }
-
-  .timeline-post {
-    padding: 1.2rem;
-  }
-
-  .post-header {
-    gap: 0.8rem;
-  }
-
-  .post-avatar {
-    width: 45px;
-    height: 45px;
-  }
-
-  .post-content {
-    margin-left: 53px;
-  }
-
-  .post-author {
-    font-size: 1rem;
-  }
-
-  .post-date {
-    font-size: 0.85rem;
-  }
-
-  .notification {
-    right: 10px;
-    left: 10px;
-    max-width: none;
   }
 }
 
