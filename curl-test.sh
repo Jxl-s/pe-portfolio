@@ -21,10 +21,9 @@ TEST_POST=$(curl -sS -X POST "$BASE_URL/api/timeline_post" \
 
 # Make sure the post was successfully created
 TEST_POST_AS_ROW=$(echo "$TEST_POST" | jq -r '"\(.id) \(.name) \(.email) \(.content)"')
-
 TEST_ID=$(echo "$TEST_POST" | jq -r '.id')
-EXPECTED_ROW="$TEST_ID $TEST_NAME $TEST_EMAIL $TEST_CONTENT"
 
+EXPECTED_ROW="$TEST_ID $TEST_NAME $TEST_EMAIL $TEST_CONTENT"
 if [[ "$TEST_POST_AS_ROW" != "$EXPECTED_ROW" ]]; then
     echo -e "${RED}❌ Failed to create post!"
     exit 1
@@ -42,9 +41,22 @@ if echo "$ALL_POSTS_AS_ROWS" | grep -qxF "$EXPECTED_ROW"; then
     echo -e "${GREEN}✅ Post was found!${NC}"
 else
     echo -e "${RED}❌ Post was not found${NC}"
+    exit 1
 fi
 
-# 3. Clean the test post
-echo -e "${YELLOW}> 3. Cleaning up test post ...${NC}"
+# 3. Delete the test post
+echo -e "${YELLOW}> 3. Delete Post ...${NC}"
 curl -sS -X DELETE "$BASE_URL/api/timeline_post/$TEST_ID" > /dev/null
-echo -e "${GREEN}> Done!${NC}"
+
+# Make sure the previous old is not there anymore
+ALL_POSTS_AFTER_DELETE=$(curl -sS -X GET "$BASE_URL/api/timeline_post")
+ALL_ROWS_AFTER_DELETE=$(echo "$ALL_POSTS_AFTER_DELETE" | jq -r '.timeline_posts[] | "\(.id) \(.name) \(.email) \(.content)"')
+
+if echo "$ALL_ROWS_AFTER_DELETE" | grep -qxF "$EXPECTED_ROW"; then
+    echo -e "${RED}❌ Post was not deleted${NC}"
+    exit 1
+else
+    echo -e "${GREEN}✅ Post successfully deleted!${NC}"
+fi
+
+exit 0
