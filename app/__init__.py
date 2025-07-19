@@ -9,7 +9,11 @@ from playhouse.shortcuts import model_to_dict
 load_dotenv()
 app = Flask(__name__)
 
-myDb = MySQLDatabase(
+if os.getenv("TESTING") == "true":
+    print("Running in test mode")
+    myDb = SqliteDatabase('file:memory?mode=memory&cache=shared', uri=True)
+else:
+    myDb = MySQLDatabase(
     os.getenv("MYSQL_DATABASE"),
     user=os.getenv("MYSQL_USER"),
     password=os.getenv("MYSQL_PASSWORD"),
