@@ -102,4 +102,33 @@ class AppTestCase(unittest.TestCase):
         assert logo.status_code == 200
         assert photo.status_code == 200
 
+        html = self.client.get("/timeline").get_data(as_text=True)
+        assert "<title>Timeline</title>" in html
+        assert "<h2>Timeline</h2>" in html
 
+    def test_malformed_timeline_post(self):
+        response = self.client.post("/api/timeline_post", data={
+            "email": "john@example.com",
+            "content": "Hello World, I'm John!"
+        })
+        assert response.status_code == 400
+        html = response.get_data(as_text=True)
+        assert 'Invalid name' in html
+
+        response = self.client.post("/api/timeline_post", data={
+            "name": "John Doe",
+            "email": "john@example.com",
+            "content": ""
+        })
+        assert response.status_code == 400
+        html = response.get_data(as_text=True)
+        assert "Invalid content" in html
+
+        response = self.client.post("/api/timeline_post", data={
+            "name": "John Doe",
+            "email": "not-an-email",
+            "content": "Hello World, I'm John!"
+        })
+        assert response.status_code == 400
+        html = response.get_data(as_text=True)
+        assert "Invalid email" in html
