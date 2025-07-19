@@ -6,6 +6,8 @@ from app import app
 
 class AppTestCase(unittest.TestCase):
     def setUp(self):
+        if not os.getenv("TESTING") == "true":
+            raise ValueError("TESTING environment variable must be set to 'true' for testing")
         self.client = app.test_client()
     
     def test_home(self):
@@ -36,6 +38,13 @@ class AppTestCase(unittest.TestCase):
 
         expAndEducation = html.count('<div class="card"')
         self.assertGreaterEqual(expAndEducation, 4, "There are at least 4 or more cards representing current experience and education as of 2025")
+
+        response.close()
+        mapIn.close()
+        photo.close()
+        logo.close()
+        cssI.close()
+        cssM.close()
         
 
     
@@ -44,6 +53,7 @@ class AppTestCase(unittest.TestCase):
         assert response.status_code == 200
         assert response.is_json
         json = response.get_json()
+        print(json)
         assert len(json["timeline_posts"]) == 0  
 
         postResponse = self.client.post("/api/timeline_post", data={
@@ -105,6 +115,15 @@ class AppTestCase(unittest.TestCase):
         html = self.client.get("/timeline").get_data(as_text=True)
         assert "<title>Timeline</title>" in html
         assert "<h2>Timeline</h2>" in html
+
+        cssM.close()
+        logo.close()
+        photo.close()
+        response.close()
+        getResponse.close()
+        postResponse.close()
+        getResponse1.close()
+        postResponse1.close()
 
     def test_malformed_timeline_post(self):
         response = self.client.post("/api/timeline_post", data={
