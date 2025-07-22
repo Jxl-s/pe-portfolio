@@ -5,8 +5,6 @@ services:
     restart: always
     env_file:
       - .env
-    ports:
-      - "5000:5000"
     depends_on:
       - mysql
 
@@ -29,7 +27,7 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - nginx_secrets:/etc/letsencrypt
+      - nginx_secrets:/etc/letsencrypt 
       - ./user_conf.d:/etc/nginx/user_conf.d
     depends_on:
       - myportfolio
