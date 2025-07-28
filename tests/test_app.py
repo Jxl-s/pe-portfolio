@@ -1,21 +1,25 @@
+import os
 import unittest
-import os 
-os.environ['TESTING'] = 'true'
+
+os.environ["TESTING"] = "true"
 
 from app import app
+
 
 class AppTestCase(unittest.TestCase):
     def setUp(self):
         if not os.getenv("TESTING") == "true":
-            raise ValueError("TESTING environment variable must be set to 'true' for testing")
+            raise ValueError(
+                "TESTING environment variable must be set to 'true' for testing"
+            )
         self.client = app.test_client()
-    
+
     def test_home(self):
         response = self.client.get("/")
         mapIn = self.client.get("/static/img/map.png")
         photo = self.client.get("/static/img/photo.webp")
         logo = self.client.get("/static/img/logo.svg")
-        cssI= self.client.get("/static/styles/index.css")
+        cssI = self.client.get("/static/styles/index.css")
         cssM = self.client.get("/static/styles/main.css")
 
         assert mapIn.status_code == 200
@@ -31,13 +35,17 @@ class AppTestCase(unittest.TestCase):
         assert "<h2>Experience</h2>" in html
         assert "<h2>Education</h2>" in html
         assert "<h2>Places I traveled to</h2>" in html
-        assert "<a href=\"/hobbies\">Hobbies</a>" in html
-        assert "<a href=\"/timeline\">Timeline</a>" in html
+        assert '<a href="/hobbies">Hobbies</a>' in html
+        assert '<a href="/timeline">Timeline</a>' in html
 
         html = response.get_data(as_text=True)
 
         expAndEducation = html.count('<div class="card"')
-        self.assertGreaterEqual(expAndEducation, 4, "There are at least 4 or more cards representing current experience and education as of 2025")
+        self.assertGreaterEqual(
+            expAndEducation,
+            4,
+            "There are at least 4 or more cards representing current experience and education as of 2025",
+        )
 
         response.close()
         mapIn.close()
@@ -45,22 +53,22 @@ class AppTestCase(unittest.TestCase):
         logo.close()
         cssI.close()
         cssM.close()
-        
 
-    
     def test_timeline(self):
         response = self.client.get("/api/timeline_post")
         assert response.status_code == 200
         assert response.is_json
         json = response.get_json()
-        print(json)
-        assert len(json["timeline_posts"]) == 0  
+        assert len(json["timeline_posts"]) == 0
 
-        postResponse = self.client.post("/api/timeline_post", data={
-            "name":"John Doe",
-            "email":"john@example.com",
-            "content":"Hello World, I'm John!"
-        })
+        postResponse = self.client.post(
+            "/api/timeline_post",
+            data={
+                "name": "John Doe",
+                "email": "john@example.com",
+                "content": "Hello World, I'm John!",
+            },
+        )
 
         assert postResponse.status_code == 200
         assert postResponse.is_json
@@ -79,11 +87,14 @@ class AppTestCase(unittest.TestCase):
         assert json["timeline_posts"][0]["content"] == "Hello World, I'm John!"
         assert json["timeline_posts"][0]["id"] == 1
 
-        postResponse1 = self.client.post("/api/timeline_post", data={
-            "name": "Jane Doe",
-            "email": "jane@example.com",
-            "content": "Hello World, I'm Jane!"
-        })
+        postResponse1 = self.client.post(
+            "/api/timeline_post",
+            data={
+                "name": "Jane Doe",
+                "email": "jane@example.com",
+                "content": "Hello World, I'm Jane!",
+            },
+        )
 
         assert postResponse1.status_code == 200
         assert postResponse1.is_json
@@ -103,7 +114,6 @@ class AppTestCase(unittest.TestCase):
         assert json["timeline_posts"][0]["email"] == "jane@example.com"
         assert json["timeline_posts"][0]["content"] == "Hello World, I'm Jane!"
 
-        
         cssM = self.client.get("/static/styles/main.css")
         logo = self.client.get("/static/img/logo.svg")
         photo = self.client.get("/static/img/photo.webp")
@@ -126,28 +136,31 @@ class AppTestCase(unittest.TestCase):
         postResponse1.close()
 
     def test_malformed_timeline_post(self):
-        response = self.client.post("/api/timeline_post", data={
-            "email": "john@example.com",
-            "content": "Hello World, I'm John!"
-        })
+        response = self.client.post(
+            "/api/timeline_post",
+            data={"email": "john@example.com", "content": "Hello World, I'm John!"},
+        )
         assert response.status_code == 400
         html = response.get_data(as_text=True)
-        assert 'Invalid name' in html
+        assert "Invalid name" in html
 
-        response = self.client.post("/api/timeline_post", data={
-            "name": "John Doe",
-            "email": "john@example.com",
-            "content": ""
-        })
+        response = self.client.post(
+            "/api/timeline_post",
+            data={"name": "John Doe", "email": "john@example.com", "content": ""},
+        )
         assert response.status_code == 400
         html = response.get_data(as_text=True)
         assert "Invalid content" in html
 
-        response = self.client.post("/api/timeline_post", data={
-            "name": "John Doe",
-            "email": "not-an-email",
-            "content": "Hello World, I'm John!"
-        })
+        response = self.client.post(
+            "/api/timeline_post",
+            data={
+                "name": "John Doe",
+                "email": "not-an-email",
+                "content": "Hello World, I'm John!",
+            },
+        )
         assert response.status_code == 400
         html = response.get_data(as_text=True)
         assert "Invalid email" in html
+
