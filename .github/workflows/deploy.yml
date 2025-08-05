@@ -32,7 +32,31 @@ jobs:
         run: ssh my-vps '~/redeploy-site.sh'
 
       - name: Check site status
-        run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }} && docker compose ps'
+        run: |
+          ssh my-vps '
+            cd ${{ secrets.PROJECT_ROOT }}
+            RESULT="$(docker compose ps --format "{{.State}} {{.Name}}")"
 
-      - name: Notify deployment status
+            # go through each line of the result
+            while IFS= read -r line; do
+              # extract the status and name
+              STATUS=$(echo $line | awk "{print \$1}")
+              NAME=$(echo $line | awk "{print \$2}")
+
+              # exit if any service is not running
+              if [ "$STATUS" != "running" ]; then
+                echo "❌ Service $NAME is not running. Status: $STATUS"
+                exit 1
+              else
+                echo "✅ Service $NAME is running."
+              fi
+            done <<< "$RESULT"
+          '
+
+      - name: Notify success
+        if: success()
         run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
+      
+      - name: Notify failure
+        if: failure()
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚨 Deployment Failed"
