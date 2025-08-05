@@ -30,3 +30,9 @@ jobs:
 
       - name: Deploy site
         run: ssh my-vps '~/redeploy-site.sh'
+
+      - name: Check site status
+        run: ssh my-vps 'cd ~/${{ secrets.PROJECT_ROOT }} && docker compose ps'
+
+      - name: Notify deployment status
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
