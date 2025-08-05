@@ -11,15 +11,15 @@ app = Flask(__name__)
 
 if os.getenv("TESTING") == "true":
     print("Running in test mode")
-    myDb = SqliteDatabase('file:memory?mode=memory&cache=shared', uri=True)
+    myDb = SqliteDatabase("file:memory?mode=memory&cache=shared", uri=True)
 else:
     myDb = MySQLDatabase(
-    os.getenv("MYSQL_DATABASE"),
-    user=os.getenv("MYSQL_USER"),
-    password=os.getenv("MYSQL_PASSWORD"),
-    host=os.getenv("MYSQL_HOST"),
-    port=int(os.getenv("MYSQL_PORT", 3306)),
-)
+        os.getenv("MYSQL_DATABASE"),
+        user=os.getenv("MYSQL_USER"),
+        password=os.getenv("MYSQL_PASSWORD"),
+        host=os.getenv("MYSQL_HOST"),
+        port=int(os.getenv("MYSQL_PORT", 3306)),
+    )
 
 
 class TimelinePost(Model):
@@ -38,9 +38,18 @@ myDb.create_tables([TimelinePost])
 
 experience = [
     {
+        "title": "Member of Technical Staff Intern",
+        "company": "Viggle AI",
+        "date": "September 2025 - Present",
+        "location": "Toronto, ON, Canada",
+        "description": [
+            "Developing applications leveraging controllable video generation models, powering memes and online brainrot"
+        ],
+    },
+    {
         "title": "Production Engineering Fellow",
         "company": "Meta & Major League Hacking",
-        "date": "June 2025 - Present",
+        "date": "June 2025 - September 2025",
         "location": "Remote",
         "description": [
             "Deploying scalable infrastructure with Docker and Linux, and automating CI/CD pipelines with GitHub Actions."
@@ -50,7 +59,7 @@ experience = [
         "title": "Software Development Intern",
         "company": "NDT Technologies Inc.",
         "date": "January 2024 - August 2024",
-        "location": "Montreal, Canada",
+        "location": "Montreal, QC, Canada",
         "description": [
             "Cut page loading times from 30s to 0.15s by optimizing database queries, significantly enhancing user experience.",
             "Reduced administration workload by 40% by developing a 4-level authentication flow, hardening system security.",
@@ -135,13 +144,13 @@ def timeline():
 
 @app.route("/api/timeline_post", methods=["POST"])
 def post_time_line_post():
-    name = request.form.get('name', '').strip()
-    email = request.form.get('email', '').strip()
-    content = request.form.get('content', '').strip()
+    name = request.form.get("name", "").strip()
+    email = request.form.get("email", "").strip()
+    content = request.form.get("content", "").strip()
 
     if not name:
-        return 'Invalid name', 400
-    elif not email or '@' not in email or '.' not in email.split('@')[-1]:
+        return "Invalid name", 400
+    elif not email or "@" not in email or "." not in email.split("@")[-1]:
         return "Invalid email", 400
     elif content == "":
         return "Invalid content", 400
