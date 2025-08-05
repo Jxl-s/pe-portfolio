@@ -39,7 +39,7 @@ myDb.create_tables([TimelinePost])
 experience = [
     {
         "title": "Member of Technical Staff Intern",
-        "company": "Viggle AI",
+        "company": "Viggle AI (a16z-backed)",
         "date": "September 2025 - Present",
         "location": "Toronto, ON, Canada",
         "description": [

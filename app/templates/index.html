@@ -34,11 +34,14 @@
         <div class="card-content">
           {% for exp in experience %}
           <div class="card">
-            <h3>{{ exp.title }}</h3>
-            <p class="card-details">
-              <span> {{ exp.company }} ({{ exp.location }}) </span>
-              <span class="location">{{ exp.date }}</span>
-            </p>
+            <div class="card-header">
+              <h3>{{ exp.title }}</h3>
+              <span class="card-date">{{ exp.date }}</span>
+            </div>
+            <div class="card-location-info">
+              <span class="card-company">{{ exp.company }}</span>
+              <span class="card-location">{{ exp.location }}</span>
+            </div>
             <ul>
               {% for desc in exp.description %}
               <li>{{ desc }}</li>
